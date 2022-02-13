@@ -1,0 +1,61 @@
+package pages;
+
+import Utilities.Utilities;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
+
+import java.sql.Driver;
+
+public class LanguagePage {
+
+    WebDriver driver;
+    WebElement element;
+    Utilities utilities = new Utilities(driver);
+
+
+
+    @FindBy(id = "icp-nav-flyout")
+    WebElement searchLanguage;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[2]/div[1]/label[1]/i[1]")
+    WebElement espaniol;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[3]/div[1]/label[1]/i[1]")
+    WebElement chino;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[4]/div[1]/label[1]/i[1]")
+    WebElement germany;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[5]/div[1]/label[1]/i[1]")
+    WebElement portugues;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[6]/div[1]/label[1]/i[1]")
+    WebElement mandarin;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[7]/div[1]/label[1]/i[1]")
+    WebElement coreano;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[8]/div[1]/label[1]/i[1]")
+    WebElement hebreo;
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/form[1]/div[1]/div[1]/div[9]/div[1]/label[1]/i[1]")
+    WebElement arabe;
+
+    @FindBy(xpath = "/html[1]/body[1]/div[1]/div[2]/div[1]/div[1]/form[1]/span[2]/span[1]/input[1]")
+    WebElement change;
+    public LanguagePage (WebDriver driver){
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    public void searchInput(){
+
+        searchLanguage.click();
+    }
+
+    public void changelanguage() {
+        int i = 0;
+        WebElement[] laguages = {espaniol, chino, germany, portugues, mandarin, coreano, hebreo, arabe};
+        for (i = 0; i < 8; i++) {
+            laguages[i].click();
+            change.click();
+            searchLanguage.click();
+        }
+        change.click();
+    }
+}
