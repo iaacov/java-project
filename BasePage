@@ -1,0 +1,40 @@
+package pages;
+import Utilities.Utilities;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+
+import java.io.IOException;
+
+public class BasePage {
+
+    public WebDriver driver;
+    public String baseUrl;
+    public LanguagePage Langpage;
+    public RegisterUser EntClient;
+    public SearchPageResult searchPage;
+    public Utilities utilities;
+
+    @BeforeTest
+    public void setUp(){
+        baseUrl = "https://www.amazon.com/";
+        System.setProperty("webdriver.chrome.driver", "C:\\javier\\java\\chromedriver.exe");
+        driver = new ChromeDriver();
+        Langpage = new LanguagePage(driver);
+        searchPage = new SearchPageResult(driver);
+        utilities = new Utilities(driver);
+        driver.manage().deleteAllCookies();
+        driver.manage().window().maximize();
+        driver.get(baseUrl);
+
+        System.out.println("It will be executed first");
+    }
+
+   /* @AfterTest
+    public void tearDown() throws IOException {
+        driver.quit();
+    }*/
+}
