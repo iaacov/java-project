@@ -1,0 +1,60 @@
+package tests;
+
+import Utilities.Utilities;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import pages.BasePage;
+import pages.LanguagePage;
+import pages.RegisterUser;
+
+import java.io.IOException;
+
+import static org.testng.Assert.*;
+
+public class FirstTest extends BasePage {
+
+    @BeforeTest
+    public void setUp(){
+        super.setUp();
+    }
+
+    @Test (priority = 1)
+    public void Changelanguageall()throws InterruptedException{
+        Langpage.searchInput();
+        Langpage.changelanguage();
+        verifyTitle();
+       //driver.navigate().back();
+
+       assertNotNull(utilities.waitForElement(searchPage.searchelement(), 50));
+    }
+    public void verifyTitle()
+    {
+        WebDriver driver1;
+        driver1 = new ChromeDriver();
+        driver1.get("https://www.amazon.com/-/es/gp/customer-preferences/select-language/" +
+                "ref=topnav_lang_ais?ie=UTF8&preferencesReturnUrl=%2F%3Fcurrency%3DUSD%26language%3Des_US");
+        String ActualTitle = driver1.getTitle();
+        String ExpectedTitle = "Cambiar configuración de idioma y moneda";
+        Assert.assertEquals(ActualTitle, ExpectedTitle);
+        System.out.println("Assert passed");
+        driver1.quit();
+
+    }
+  /* @AfterTest
+    public void tearDown() throws IOException {
+        // utilities.screenshot();
+        super.tearDown();
+    }*/
+   /* @Test (priority = 1)
+    public void RegisterNew() throws InterruptedException{
+       EntClient.EnterClient();
+    }*/
+}
